@@ -28,87 +28,71 @@ class MainActivity : AppCompatActivity() {
         et.showSoftInputOnFocus = false
 
         //Retrofit
-        service.nowShowing().enqueue(object : Callback<Github2> {
+        service.nowShowing().enqueue(object : Callback<Tmdb2> {
             @SuppressLint("SetTextI18n")
-            override fun onFailure(call: Call<Github2>, t: Throwable) {
+            override fun onFailure(call: Call<Tmdb2>, t: Throwable) {
                 tv.text="Loading failed, check your internet connection !!!"
-                tv.text=tv.text.toString()+t.cause.toString()
             }
 
             override fun onResponse(
-                call: Call<Github2>,
-                response: Response<Github2>
+                call: Call<Tmdb2>,
+                response: Response<Tmdb2>
             ) {
                 runOnUiThread {
                     rview.layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.HORIZONTAL,false)
-                    rview.adapter = GithubAdapter(this@MainActivity, response.body()!!.results)
-                    /*rview.setOnClickListener {
-                        startActivity(Intent(this@MainActivity,MovieAdapter2::class.java))
-                    }*/
-
-                    /*rview.addOnItemTouchListener(RecyclerItemClickListenr(this@MainActivity, rview, object : RecyclerItemClickListenr.OnItemClickListener {
-                        override fun onItemLongClick(view: View?, position: Int) {
-
-                        }
-                        override fun onItemClick(view: View, position: Int) {
-                            startActivity(Intent(this@MainActivity,MovieAdapter::class.java))
-                        }
-                    }))*/
+                    rview.adapter = TmdbAdapter(this@MainActivity, response.body()!!.results)
                 }
             }
         })
-        service.popularMovies().enqueue(object : Callback<Github2> {
-            override fun onFailure(call: Call<Github2>, t: Throwable) {
+        service.popularMovies().enqueue(object : Callback<Tmdb2> {
+            override fun onFailure(call: Call<Tmdb2>, t: Throwable) {
                 tv.text="Loading failed!"
-                tv.text=tv.text.toString()+t.cause.toString()
             }
 
             override fun onResponse(
-                call: Call<Github2>,
-                response: Response<Github2>
+                call: Call<Tmdb2>,
+                response: Response<Tmdb2>
             ) {
                 runOnUiThread {
-                    //                    tv.text=response.body().toString()
                     rview2.layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.HORIZONTAL,false)
-                    rview2.adapter = GithubAdapter2(this@MainActivity, response.body()!!.results)
+                    rview2.adapter = TmdbAdapter2(this@MainActivity, response.body()!!.results)
 //                    Picasso.get().load(response.body()?.Poster.toString()).into(image)
 
                 }
             }
         })
-        service.upcoming().enqueue(object : Callback<Github2> {
-            override fun onFailure(call: Call<Github2>, t: Throwable) {
+        service.upcoming().enqueue(object : Callback<Tmdb2> {
+            override fun onFailure(call: Call<Tmdb2>, t: Throwable) {
                 tv.text="Loading failed!"
-                tv.text=tv.text.toString()+t.cause.toString()
             }
 
             override fun onResponse(
-                call: Call<Github2>,
-                response: Response<Github2>
+                call: Call<Tmdb2>,
+                response: Response<Tmdb2>
             ) {
                 runOnUiThread {
                     //                    tv.text=response.body().toString()
                     rview3.layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.HORIZONTAL,false)
-                    rview3.adapter = GithubAdapter(this@MainActivity, response.body()!!.results)
+                    rview3.adapter = TmdbAdapter(this@MainActivity, response.body()!!.results)
 //                    Picasso.get().load(response.body()?.Poster.toString()).into(image)
 
                 }
             }
         })
-        service.toprated().enqueue(object : Callback<Github2> {
-            override fun onFailure(call: Call<Github2>, t: Throwable) {
+        service.toprated().enqueue(object : Callback<Tmdb2> {
+            override fun onFailure(call: Call<Tmdb2>, t: Throwable) {
                 tv.text="Loading failed!"
-                tv.text=tv.text.toString()+t.cause.toString()
+                //et.visibility = "gone".toInt()
             }
 
             override fun onResponse(
-                call: Call<Github2>,
-                response: Response<Github2>
+                call: Call<Tmdb2>,
+                response: Response<Tmdb2>
             ) {
                 runOnUiThread {
                     //                    tv.text=response.body().toString()
                     rview4.layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.HORIZONTAL,false)
-                    rview4.adapter = GithubAdapter2(this@MainActivity, response.body()!!.results)
+                    rview4.adapter = TmdbAdapter2(this@MainActivity, response.body()!!.results)
 //                    Picasso.get().load(response.body()?.Poster.toString()).into(image)
 
                 }

@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_castdetails.*
+import kotlinx.android.synthetic.main.activity_castdetails.view.*
+import kotlinx.android.synthetic.main.differentlayout.view.*
 import kotlinx.android.synthetic.main.item_github2.view.*
 
 
@@ -28,12 +31,27 @@ class MovieAdapter(val context: Context, private val arrayList: ArrayList<MovieD
         var currentuser: MovieDetails? =null
         init{
             itemView.setOnClickListener {
-
                 val l = Intent(context,CastDetails::class.java)
                 l.putExtra("castID",currentuser!!.id)
                 context.startActivity(l)
             }
         }
+
+        /*fun bind(user: MovieDetails, position: Int) {
+            this.currentuser = user
+            with(itemView) {
+                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.profile_path).into(img1)
+                charactertv.text = user.character
+                nametv.text = user.name
+                if (user.profile_path == null) {
+                    Picasso.get().load(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaYY" +
+                                "JV4KmiKJQY19WvKPIcHGFTx_b4IF13cwjAGtnPx-r2Syl1"
+                    ).into(img)
+                }
+            }
+
+        }*/
 
         fun bind(user: MovieDetails, position: Int) {
             this.currentuser = user
@@ -46,10 +64,8 @@ class MovieAdapter(val context: Context, private val arrayList: ArrayList<MovieD
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaYY" +
                                 "JV4KmiKJQY19WvKPIcHGFTx_b4IF13cwjAGtnPx-r2Syl1"
                     ).into(img)
-
                 }
             }
-
         }
     }
 }

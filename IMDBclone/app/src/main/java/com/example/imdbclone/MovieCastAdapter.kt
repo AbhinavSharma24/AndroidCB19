@@ -40,10 +40,9 @@ class Moviecastadapter(val context: Context, private val arrayList: ArrayList<Mo
             this.currentuser = user
 
             with(itemView) {
-                //Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.profile_path).into(img1)
                 titletv.text = user.title
-                ratingtv.text = "As "+user.character
-                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.poster_path).into(img1)
+                ratingtv.text = "As " + user.character
+                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.poster_path).into(img2)
             }
 //
 

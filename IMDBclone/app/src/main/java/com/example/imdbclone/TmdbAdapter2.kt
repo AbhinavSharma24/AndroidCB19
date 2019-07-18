@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.differentlayout.view.*
 
-class GithubAdapter2( val context: Context, private val arrayList: ArrayList<GithubResponse>)
-    : RecyclerView.Adapter<GithubAdapter2.GithubViewHolder>() {
+class TmdbAdapter2( val context: Context, private val arrayList: ArrayList<TmdbResponse>)
+    : RecyclerView.Adapter<TmdbAdapter2.GithubViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubViewHolder {
         val inflater = LayoutInflater.from(context)
         return GithubViewHolder(inflater.inflate(R.layout.differentlayout, parent, false))
@@ -25,7 +25,7 @@ class GithubAdapter2( val context: Context, private val arrayList: ArrayList<Git
     }
 
     inner class GithubViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var currentuser: GithubResponse? = null
+        private var currentuser: TmdbResponse? = null
         private var currentposition = 0
         init {
             itemView.setOnClickListener {
@@ -36,13 +36,13 @@ class GithubAdapter2( val context: Context, private val arrayList: ArrayList<Git
         }
 
         @SuppressLint("SetTextI18n")
-        fun bind(user: GithubResponse, position: Int) {
+        fun bind(user: TmdbResponse, position: Int) {
             this.currentuser = user
             this.currentposition = position
             with(itemView) {
                 titletv.text = user.title
                 ratingtv.text = "⭐ " + user.vote_average.toString() + "/10"
-                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.poster_path).into(img1)
+                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.poster_path).into(img2)
             }
         }
     }

@@ -32,6 +32,7 @@ data class Genres(
 
 data class Castinfo(
     val name:String,
+    val profile_path:String,
     val biography:String,
     val place_of_birth:String,
     val birthday:String

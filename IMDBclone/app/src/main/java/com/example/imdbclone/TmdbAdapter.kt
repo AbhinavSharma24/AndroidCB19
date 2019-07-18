@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_github.view.*
 
-class GithubAdapter( val context: Context, private val arrayList: ArrayList<GithubResponse>)
-    : RecyclerView.Adapter<GithubAdapter.GithubViewHolder>() {
+class TmdbAdapter( val context: Context, private val arrayList: ArrayList<TmdbResponse>)
+    : RecyclerView.Adapter<TmdbAdapter.GithubViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubViewHolder {
         val inflater = LayoutInflater.from(context)
         return GithubViewHolder(inflater.inflate(R.layout.item_github, parent, false))
@@ -25,7 +25,7 @@ class GithubAdapter( val context: Context, private val arrayList: ArrayList<Gith
     }
 
     inner class GithubViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var currentuser: GithubResponse? = null
+        private var currentuser: TmdbResponse? = null
         private var currentposition = 0
 
         init {
@@ -36,7 +36,7 @@ class GithubAdapter( val context: Context, private val arrayList: ArrayList<Gith
             }
         }
 
-        fun bind(user: GithubResponse, position: Int) {
+        fun bind(user: TmdbResponse, position: Int) {
             this.currentuser = user
             this.currentposition = position
             with(itemView) {

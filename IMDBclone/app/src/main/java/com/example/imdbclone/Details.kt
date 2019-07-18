@@ -6,6 +6,10 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.android.synthetic.main.differentlayout.*
+import kotlinx.android.synthetic.main.differentlayout.view.*
+import kotlinx.android.synthetic.main.item_github.*
+import kotlinx.android.synthetic.main.item_github.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,7 +35,18 @@ class Details : AppCompatActivity() {
         service.overview(pos).enqueue(object : Callback<Overview> {
             override fun onFailure(call: Call<Overview>, t: Throwable) {
                 tv.text="Loading failed!"
-                tv.text=tv.text.toString()+t.cause.toString()
+            }
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(call: Call<Overview>, response: Response<Overview>) {
+                runOnUiThread {
+                    Picasso.get().load("https://image.tmdb.org/t/p/original" + response.body()?.backdrop_path).into(toolbarimage)
+                }
+            }
+        })
+
+        service.overview(pos).enqueue(object : Callback<Overview> {
+            override fun onFailure(call: Call<Overview>, t: Throwable) {
+                tv.text="Loading failed!"
             }
 
             @SuppressLint("SetTextI18n")
@@ -56,15 +71,12 @@ class Details : AppCompatActivity() {
         service.trailers(pos).enqueue(object : Callback<Trailerarray> {
             override fun onFailure(call: Call<Trailerarray>, t: Throwable) {
                 tv.text="Loading failed!"
-                tv.text=tv.text.toString()+t.cause.toString()
             }
-
             override fun onResponse(
                 call: Call<Trailerarray>,
                 response: Response<Trailerarray>
             ) {
                 runOnUiThread {
-                    //                    tv.text=response.body().toString()
                     rview3.layoutManager = LinearLayoutManager(this@Details, LinearLayoutManager.HORIZONTAL,false)
                     rview3.adapter = MovieAdapter2(this@Details, response.body()!!.results)
                 }
@@ -74,34 +86,30 @@ class Details : AppCompatActivity() {
         service.cast(pos).enqueue(object : Callback<Cast> {
             override fun onFailure(call: Call<Cast>, t: Throwable) {
                 tv.text="Loading failed!"
-                tv.text=tv.text.toString()+t.cause.toString()
             }
-
             override fun onResponse(
                 call: Call<Cast>,
                 response: Response<Cast>
             ) {
                 runOnUiThread {
-                    //                    tv.text=response.body().toString()
                     rview.layoutManager = LinearLayoutManager(this@Details, LinearLayoutManager.HORIZONTAL,false)
                     rview.adapter = MovieAdapter(this@Details, response.body()!!.cast)
                 }
             }
         })
 
-        service.similarmovies(pos).enqueue(object : Callback<Github2> {
-            override fun onFailure(call: Call<Github2>, t: Throwable) {
+        service.similarmovies(pos).enqueue(object : Callback<Tmdb2> {
+            override fun onFailure(call: Call<Tmdb2>, t: Throwable) {
                 tv.text="Loading failed!"
-                tv.text=tv.text.toString()+t.cause.toString()
             }
 
             override fun onResponse(
-                call: Call<Github2>,
-                response: Response<Github2>
+                call: Call<Tmdb2>,
+                response: Response<Tmdb2>
             ) {
                 runOnUiThread {
                     rview2.layoutManager = LinearLayoutManager(this@Details,LinearLayoutManager.HORIZONTAL,false)
-                    rview2.adapter = GithubAdapter2(this@Details, response.body()!!.results)
+                    rview2.adapter = TmdbAdapter2(this@Details, response.body()!!.results)
                 }
             }
         })

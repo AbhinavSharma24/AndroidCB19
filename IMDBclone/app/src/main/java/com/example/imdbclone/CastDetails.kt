@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_castdetails.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,12 +29,23 @@ class CastDetails : AppCompatActivity() {
 
         val service = retrofitClient.create(GithubService::class.java)
 
+
         service.castinfo(pos).enqueue(object : Callback<Castinfo> {
             override fun onFailure(call: Call<Castinfo>, t: Throwable) {
                 tv.text="Loading failed!"
-                tv.text=tv.text.toString()+t.cause.toString()
             }
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(call: Call<Castinfo>, response: Response<Castinfo>) {
+                runOnUiThread {
+                    Picasso.get().load("https://image.tmdb.org/t/p/w500" + response.body()?.profile_path).into(img1)
+                }
+            }
+        })
 
+        service.castinfo(pos).enqueue(object : Callback<Castinfo> {
+            override fun onFailure(call: Call<Castinfo>, t: Throwable) {
+                tv.text="Loading failed!"
+            }
             @SuppressLint("SetTextI18n")
             override fun onResponse(
                 call: Call<Castinfo>,
@@ -51,9 +63,7 @@ class CastDetails : AppCompatActivity() {
         service.moviecast(pos).enqueue(object : Callback<Moviecastarray> {
             override fun onFailure(call: Call<Moviecastarray>, t: Throwable) {
                 tv.text="Loading failed!"
-                tv.text=tv.text.toString()+t.cause.toString()
             }
-
             override fun onResponse(
                 call: Call<Moviecastarray>,
                 response: Response<Moviecastarray>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="80dp"
+            android:orientation="horizontal">
+        <TextView
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:textColor="#111"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username = "/>
+        <EditText
+                android:id="@+id/edituser"
+                android:textSize="25sp"
+                android:padding="10dp"
+                android:textColor="#F75B5B"
+                android:hint="Enter username "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+        <TextView
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:textColor="#111"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password = "/>
+        <EditText
+                android:id="@+id/editpass"
+                android:padding="10dp"
+                android:textSize="25sp"
+                android:textColor="#F75B5B"
+                android:hint="Enter password "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/signinbtn"
+            android:text="SIGNIN"
+            android:background="#1a1a1a"
+            android:textColor ="#F75B5B"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp"
+            android:padding="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/exitbtn"
+            android:text="EXIT"
+            android:background="#1a1a1a"
+            android:textColor ="#F75B5B"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:textSize="30sp"
+            android:padding="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="70dp"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:text="Don't have a account yet? "
+                android:textColor="#111"
+                android:layout_width="wrap_content"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"/>
+        <Button
+                android:id="@+id/signupbtn"
+                android:text="SignUp here"
+                android:background="#1a1a1a"
+                android:textColor="#F75B5B"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>

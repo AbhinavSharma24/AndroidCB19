@@ -37,22 +37,6 @@ class MovieAdapter(val context: Context, private val arrayList: ArrayList<MovieD
             }
         }
 
-        /*fun bind(user: MovieDetails, position: Int) {
-            this.currentuser = user
-            with(itemView) {
-                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.profile_path).into(img1)
-                charactertv.text = user.character
-                nametv.text = user.name
-                if (user.profile_path == null) {
-                    Picasso.get().load(
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaYY" +
-                                "JV4KmiKJQY19WvKPIcHGFTx_b4IF13cwjAGtnPx-r2Syl1"
-                    ).into(img)
-                }
-            }
-
-        }*/
-
         fun bind(user: MovieDetails, position: Int) {
             this.currentuser = user
             with(itemView) {

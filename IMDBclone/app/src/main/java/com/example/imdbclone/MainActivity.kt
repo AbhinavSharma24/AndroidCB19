@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -25,7 +26,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        et.showSoftInputOnFocus = false
+        dummyEditTextFocus.requestFocus()
+        dummyEditTextFocus.isFocusableInTouchMode = true
 
         //Retrofit
         service.nowShowing().enqueue(object : Callback<Tmdb2> {

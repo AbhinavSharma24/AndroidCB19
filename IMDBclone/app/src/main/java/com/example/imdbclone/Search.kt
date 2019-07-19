@@ -3,6 +3,7 @@ package com.example.imdbclone
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_search.*
@@ -43,7 +44,7 @@ class Search : AppCompatActivity() {
                 runOnUiThread {
                     rview.layoutManager = LinearLayoutManager(this@Search, RecyclerView.VERTICAL,false)
                     rview.adapter = SearchAdapter(this@Search, response.body()!!.results)
-
+                    progressBar.visibility = View.GONE
                 }
             }
         })

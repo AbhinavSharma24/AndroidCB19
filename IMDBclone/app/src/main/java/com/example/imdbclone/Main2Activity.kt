@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +27,8 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     private val service = retrofitClient.create(GithubService::class.java)
+
+    //val snapitemhelper = SnapItemHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 runOnUiThread {
                     rview.layoutManager = LinearLayoutManager(this@Main2Activity, LinearLayoutManager.HORIZONTAL,false)
                     rview.adapter = TmdbAdapter(this@Main2Activity, response.body()!!.results)
+                    progressBar.visibility = View.GONE
                 }
             }
         })

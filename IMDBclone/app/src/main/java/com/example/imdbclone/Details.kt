@@ -3,6 +3,7 @@ package com.example.imdbclone
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
@@ -40,6 +41,7 @@ class Details : AppCompatActivity() {
             override fun onResponse(call: Call<Overview>, response: Response<Overview>) {
                 runOnUiThread {
                     Picasso.get().load("https://image.tmdb.org/t/p/original" + response.body()?.backdrop_path).into(toolbarimage)
+                    progressBar.visibility = View.GONE
                 }
             }
         })

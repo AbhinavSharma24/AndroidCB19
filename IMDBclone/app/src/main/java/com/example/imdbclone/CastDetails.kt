@@ -67,6 +67,7 @@ class CastDetails : AppCompatActivity() {
             override fun onResponse(call: Call<Castinfo>, response: Response<Castinfo>) {
                 runOnUiThread {
                     Picasso.get().load("https://image.tmdb.org/t/p/w500" + response.body()?.profile_path).into(img1)
+                    progressBar.visibility = View.GONE
                 }
             }
         })

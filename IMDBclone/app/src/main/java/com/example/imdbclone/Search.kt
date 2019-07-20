@@ -20,8 +20,11 @@ class Search : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-//        setSupportActionBar(toolbar)
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setSupportActionBar(toolbar22)
+        supportActionBar?.title = "Search Results"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val text=intent.getStringExtra("Search Text")
         val retrofitClient = Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/")
@@ -48,5 +51,10 @@ class Search : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

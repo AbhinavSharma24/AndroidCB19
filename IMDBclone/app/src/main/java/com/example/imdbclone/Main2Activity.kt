@@ -1,16 +1,21 @@
 package com.example.imdbclone
 
 import android.annotation.SuppressLint
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_launcher.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,11 +38,11 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar1)
 
         //startActivity(Intent(this,MainActivity::class.java))
-        dummyEditTextFocus.requestFocus()
-        dummyEditTextFocus.isFocusableInTouchMode = true
+        /*dummyEditTextFocus.requestFocus()
+        dummyEditTextFocus.isFocusableInTouchMode = true*/
 
         //Retrofit
         service.nowShowing().enqueue(object : Callback<Tmdb2> {
@@ -101,7 +106,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 }
             }
         })
-        searchbutton.setOnClickListener {
+        /*searchbutton.setOnClickListener {
             val a = Intent(this,Search::class.java)
             a.putExtra("Search Text",et.text.toString())
             if(et.text.toString() != "") {
@@ -109,12 +114,11 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             }else{
                 Toast.makeText(this,"Write something in search bar !!!",Toast.LENGTH_SHORT).show()
             }
-        }
-
+        }*/
 
 
         val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this, drawer_layout, toolbar1, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
         drawer_layout?.addDrawerListener(toggle)
         toggle.syncState()
@@ -131,14 +135,46 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }*/
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        val searchItem = menu.findItem(R.id.app_bar_search)
+        val searchView : SearchView = MenuItemCompat.getActionView(searchItem) as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                val a = Intent(this@Main2Activity, Search::class.java)
+                a.putExtra("Search Text", query)
+                if (query != "") {
+                    startActivity(a)
+                } else {
+                    Toast.makeText(this@Main2Activity, "Write something in search bar !!!", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                return false
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                Toast.makeText(this,"Settings will be available soon.",Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.action_profile -> {
+                Toast.makeText(this,"Profile will be available shortly after SignIn/SignOut part is completed.",Toast.LENGTH_SHORT).show()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -149,16 +185,16 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 //startActivity(Intent(this,MainActivity::class.java))
             }
             R.id.nav_tvShows -> {
-
+                Toast.makeText(this,"Feature Coming Soon !!!",Toast.LENGTH_SHORT).show()
             }
             R.id.nav_favourite -> {
-
+                Toast.makeText(this,"Feature Coming Soon !!!",Toast.LENGTH_SHORT).show()
             }
             R.id.nav_about -> {
-
+                Toast.makeText(this,"Feature Coming Soon !!!",Toast.LENGTH_SHORT).show()
             }
             R.id.nav_contactUs -> {
-
+                Toast.makeText(this,"Feature Coming Soon !!!",Toast.LENGTH_SHORT).show()
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)

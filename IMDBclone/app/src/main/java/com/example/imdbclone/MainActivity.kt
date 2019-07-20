@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        dummyEditTextFocus.requestFocus()
-        dummyEditTextFocus.isFocusableInTouchMode = true
+//        dummyEditTextFocus.requestFocus()
+//        dummyEditTextFocus.isFocusableInTouchMode = true
 
         //Retrofit
         service.nowShowing().enqueue(object : Callback<Tmdb2> {
@@ -100,12 +101,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-        searchbutton.setOnClickListener {
+        /*searchbutton.setOnClickListener {
             val a = Intent(this,Search::class.java)
             a.putExtra("Search Text",et.text.toString())
             startActivity(a)
 
-        }
+        }*/
 
     }
 }

@@ -1,9 +1,12 @@
 package com.example.imdbclone
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
@@ -23,8 +26,11 @@ class Details : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
-        //setSupportActionBar(toolbar)
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setSupportActionBar(toolbar33)
+        supportActionBar?.title = "Movie Details"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val pos = intent.getIntExtra("ID", 55)
         val retrofitClient = Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/movie/")
@@ -116,6 +122,11 @@ class Details : AppCompatActivity() {
             }
         })
 
-
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }

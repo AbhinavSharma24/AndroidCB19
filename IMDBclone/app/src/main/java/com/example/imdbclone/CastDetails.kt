@@ -25,7 +25,9 @@ class CastDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_castdetails)
-//        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar11)
+        supportActionBar?.title = "Cast Details"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val pos = intent.getIntExtra("castID",0)
@@ -109,7 +111,11 @@ class CastDetails : AppCompatActivity() {
             }
         })
 
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     /*private fun expand() {

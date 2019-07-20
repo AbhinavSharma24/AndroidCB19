@@ -8,25 +8,25 @@
     <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_marginRight="10dp"
-            android:layout_height="380dp">
+            android:layout_height="330dp">
 
-    <TextView android:layout_width="200dp"
+    <TextView android:layout_width="140dp"
               android:layout_marginTop="3dp"
               android:textStyle="bold"
               android:layout_height="wrap_content"
               android:id="@+id/titletv"
-              android:textSize="17sp"
+              android:textSize="15sp"
               android:layout_marginLeft="10dp"/>
 
     <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:id="@+id/ratingtv"
-              android:layout_marginTop="44dp"
-              android:textSize="15sp"
+              android:layout_marginTop="58dp"
+              android:textSize="13sp"
               android:layout_marginLeft="10dp"/>
 
-    <ImageView android:layout_width="200dp"
-               android:layout_height="300dp"
+    <ImageView android:layout_width="150dp"
+               android:layout_height="250dp"
                android:layout_gravity="bottom"
                android:layout_marginBottom="10dp"
                android:id="@+id/img2"

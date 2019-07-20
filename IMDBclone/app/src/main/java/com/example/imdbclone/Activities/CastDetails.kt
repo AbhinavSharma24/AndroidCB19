@@ -1,10 +1,15 @@
-package com.example.imdbclone
+package com.example.imdbclone.Activities
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.imdbclone.*
+import com.example.imdbclone.Adapters.Moviecastadapter
+import com.example.imdbclone.Others.Castinfo
+import com.example.imdbclone.Others.GithubService
+import com.example.imdbclone.Others.Moviecastarray
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_castdetails.*
 import retrofit2.Call
@@ -78,7 +83,8 @@ class CastDetails : AppCompatActivity() {
             ) {
                 runOnUiThread {
                     rview.layoutManager = LinearLayoutManager(this@CastDetails,LinearLayoutManager.HORIZONTAL,false)
-                    rview.adapter = Moviecastadapter(this@CastDetails, response.body()!!.cast)
+                    rview.adapter =
+                            Moviecastadapter(this@CastDetails, response.body()!!.cast)
                 }
             }
         })

@@ -8,7 +8,7 @@
         android:gravity="center"
         android:background="@drawable/poster2"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".SignInActivity"
+        tools:context=".Others.SignInActivity"
         android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout

@@ -5,13 +5,13 @@ import android.os.Bundle
 import com.example.imdbclone.R
 import kotlinx.android.synthetic.main.activity_about.*
 
-class AboutActivity : AppCompatActivity() {
+class FavouriteActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
+        setContentView(R.layout.activity_favourite)
         setSupportActionBar(abouttoolbar)
-        supportActionBar?.title = "About"
+        supportActionBar?.title = "Favourites"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

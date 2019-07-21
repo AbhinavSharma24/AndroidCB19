@@ -37,26 +37,30 @@ interface GithubService {
     @GET("person/{Id}/movie_credits?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US")
     fun moviecast(@Path("Id")id:Int):Call<Moviecastarray>
 
-    @GET("search/movie?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&query&page=1&include_adult=false")
+    @GET("person/{Id}/tv_credits?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US")
+    fun tvcast(@Path("Id")id:Int):Call<Tvcastarray>
+
+    @GET("search/movie?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&query&page=1")
     fun search(@Query("query")q:String):Call<Searcharray>
 
-    //@GET("")
+    @GET("search/tv?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&query&page=1")
+    fun searchtv(@Query("query")q:String):Call<Searcharray>
 
+    @GET("airing_today?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&page=1")
+    fun airingToday() :Call<TmdbTv>
+
+    @GET("on_the_air?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&page=1")
+    fun onTheAir() :Call<TmdbTv>
+
+    @GET("popular?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&page=1")
+    fun popularTv() :Call<TmdbTv>
+
+    @GET("top_rated?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&page=1")
+    fun topRatedTv(): Call<TmdbTv>
+
+    @GET ("{Id}/credits?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US")
+    fun castTv(@Path("Id")id:Int):Call<Cast>
+
+    @GET ("{Id}/similar?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&page=1")
+    fun similarTv(@Path("Id")id:Int): Call<TmdbTv>
 }
-
-
-
-
-
-
-/*
-import retrofit2.Call
-import retrofit2.http.GET
-
-interface TmdbService {
-    @GET("search/users?q=%22Pulkit%20Aggarwal%22")
-    fun listUsers(): Call<>
-
-    @GET("search/users?q=%22Pulkit%20Aggarwal%22")
-    fun listRepos(): Call<>
-}*/

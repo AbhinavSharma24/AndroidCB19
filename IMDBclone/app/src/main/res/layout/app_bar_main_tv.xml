@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activities.Main2Activity">
+        tools:context=".Activities.TVShowsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
 
     <include
             android:layout_marginTop="50dp"
-            layout="@layout/activity_main"
+            layout="@layout/activity_tvshows_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

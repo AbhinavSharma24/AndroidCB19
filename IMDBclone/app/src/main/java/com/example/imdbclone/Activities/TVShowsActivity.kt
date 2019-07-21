@@ -3,24 +3,23 @@ package com.example.imdbclone.Activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
-import com.google.android.material.navigation.NavigationView
-import androidx.core.view.GravityCompat
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.example.imdbclone.*
-import com.example.imdbclone.Adapters.TmdbAdapter
-import com.example.imdbclone.Adapters.TmdbAdapter2
+import com.example.imdbclone.Adapters.*
 import com.example.imdbclone.Others.GithubService
-import com.example.imdbclone.Others.Tmdb2
+import com.example.imdbclone.Others.TmdbTv
+import com.example.imdbclone.R
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_launcher.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -30,90 +29,84 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class TVShowsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val retrofitClient = Retrofit.Builder()
-        .baseUrl("https://api.themoviedb.org/3/movie/")
+        .baseUrl("https://api.themoviedb.org/3/tv/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     private val service = retrofitClient.create(GithubService::class.java)
-
-    //val snapitemhelper = SnapItemHelper
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_launcher)
+        setContentView(R.layout.activity_tvshows)
         setSupportActionBar(toolbar1)
 
-        //startActivity(Intent(this,MainActivity::class.java))
-        /*dummyEditTextFocus.requestFocus()
-        dummyEditTextFocus.isFocusableInTouchMode = true*/
-
         //Retrofit
-        service.nowShowing().enqueue(object : Callback<Tmdb2> {
+        service.airingToday().enqueue(object : Callback<TmdbTv> {
             @SuppressLint("SetTextI18n")
-            override fun onFailure(call: Call<Tmdb2>, t: Throwable) {
+            override fun onFailure(call: Call<TmdbTv>, t: Throwable) {
                 tv.text="Loading failed, check your internet connection !!!"
             }
             override fun onResponse(
-                call: Call<Tmdb2>,
-                response: Response<Tmdb2>
+                call: Call<TmdbTv>,
+                response: Response<TmdbTv>
             ) {
                 runOnUiThread {
-                    rview.layoutManager = LinearLayoutManager(this@Main2Activity, LinearLayoutManager.HORIZONTAL,false)
+                    rview.layoutManager = LinearLayoutManager(this@TVShowsActivity, LinearLayoutManager.HORIZONTAL,false)
                     rview.adapter =
-                            TmdbAdapter(this@Main2Activity, response.body()!!.results)
+                            TmdbAdaptorTv(this@TVShowsActivity, response.body()!!.results)
                     val snapItemHelper = PagerSnapHelper()
                     snapItemHelper.attachToRecyclerView(rview)
                     progressBar.visibility = View.GONE
                 }
             }
         })
-        service.popularMovies().enqueue(object : Callback<Tmdb2> {
-            override fun onFailure(call: Call<Tmdb2>, t: Throwable) {
+        service.onTheAir().enqueue(object : Callback<TmdbTv> {
+            override fun onFailure(call: Call<TmdbTv>, t: Throwable) {
                 tv.text="Loading failed!"
             }
             override fun onResponse(
-                call: Call<Tmdb2>,
-                response: Response<Tmdb2>
+                call: Call<TmdbTv>,
+                response: Response<TmdbTv>
             ) {
                 runOnUiThread {
-                    rview2.layoutManager = LinearLayoutManager(this@Main2Activity, LinearLayoutManager.HORIZONTAL,false)
+                    rview2.layoutManager = LinearLayoutManager(this@TVShowsActivity, LinearLayoutManager.HORIZONTAL,false)
                     rview2.adapter =
-                            TmdbAdapter2(this@Main2Activity, response.body()!!.results)
+                            TmdbAdaptorTv2(this@TVShowsActivity, response.body()!!.results)
 
                 }
             }
         })
-        service.upcoming().enqueue(object : Callback<Tmdb2> {
-            override fun onFailure(call: Call<Tmdb2>, t: Throwable) {
+        service.popularTv().enqueue(object : Callback<TmdbTv> {
+            override fun onFailure(call: Call<TmdbTv>, t: Throwable) {
                 tv.text="Loading failed!"
             }
             override fun onResponse(
-                call: Call<Tmdb2>,
-                response: Response<Tmdb2>
+                call: Call<TmdbTv>,
+                response: Response<TmdbTv>
             ) {
                 runOnUiThread {
-                    rview3.layoutManager = LinearLayoutManager(this@Main2Activity, LinearLayoutManager.HORIZONTAL,false)
+                    rview3.layoutManager = LinearLayoutManager(this@TVShowsActivity, LinearLayoutManager.HORIZONTAL,false)
                     rview3.adapter =
-                            TmdbAdapter(this@Main2Activity, response.body()!!.results)
+                            TmdbAdaptorTv(this@TVShowsActivity, response.body()!!.results)
                     val snapItemHelper = PagerSnapHelper()
                     snapItemHelper.attachToRecyclerView(rview3)
                 }
             }
         })
-        service.toprated().enqueue(object : Callback<Tmdb2> {
-            override fun onFailure(call: Call<Tmdb2>, t: Throwable) {
+        service.topRatedTv().enqueue(object : Callback<TmdbTv> {
+            override fun onFailure(call: Call<TmdbTv>, t: Throwable) {
                 tv.text="Loading failed!"
                 //et.visibility = "gone".toInt()
             }
             override fun onResponse(
-                call: Call<Tmdb2>,
-                response: Response<Tmdb2>
+                call: Call<TmdbTv>,
+                response: Response<TmdbTv>
             ) {
                 runOnUiThread {
-                    rview4.layoutManager = LinearLayoutManager(this@Main2Activity, LinearLayoutManager.HORIZONTAL,false)
+                    rview4.layoutManager = LinearLayoutManager(this@TVShowsActivity, LinearLayoutManager.HORIZONTAL,false)
                     rview4.adapter =
-                            TmdbAdapter2(this@Main2Activity, response.body()!!.results)
+                            TmdbAdaptorTv2(this@TVShowsActivity, response.body()!!.results)
                 }
             }
         })
@@ -161,13 +154,12 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                val a = Intent(this@Main2Activity, Search::class.java)
+                val a = Intent(this@TVShowsActivity, SearchTv::class.java)
                 a.putExtra("Search Text", query)
                 if (query != "") {
                     startActivity(a)
                 } else {
-                    Toast.makeText(this@Main2Activity, "Write something in search bar !!!", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this@TVShowsActivity, "Write something in search bar !!!", Toast.LENGTH_SHORT).show()
                 }
                 return false
             }
@@ -181,7 +173,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_profile -> {
-                Toast.makeText(this,"Profile will be available after SignIn/SignOut part is completed.",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Profile will be available after SignIn/SignOut part is completed.", Toast.LENGTH_SHORT).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -191,13 +183,13 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_movies -> {
-                //startActivity(Intent(this,Main2Activity::class.java))
+                startActivity(Intent(this,Main2Activity::class.java))
             }
             R.id.nav_tvShows -> {
-                startActivity(Intent(this,TVShowsActivity::class.java))
+                //startActivity(Intent(this,TVShowsActivity::class.java))
             }
             R.id.nav_favourite -> {
-                Toast.makeText(this,"Feature Coming Soon !!!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Feature Coming Soon !!!", Toast.LENGTH_SHORT).show()
                 //startActivity(Intent(this,FavouriteActivity::class.java))
             }
             R.id.nav_about -> {

@@ -7,9 +7,11 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.imdbclone.*
 import com.example.imdbclone.Adapters.Moviecastadapter
+import com.example.imdbclone.Adapters.TvCastAdapter
 import com.example.imdbclone.Others.Castinfo
 import com.example.imdbclone.Others.GithubService
 import com.example.imdbclone.Others.Moviecastarray
+import com.example.imdbclone.Others.Tvcastarray
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_castdetails.*
 import retrofit2.Call
@@ -64,7 +66,7 @@ class CastDetails : AppCompatActivity() {
                     //toolbar.title=response.body()?.name
                     if(response.body()?.birthday != null && response.body()?.place_of_birth != null && response.body()?.biography != null) {
                         val age = 2019 - response.body()?.birthday?.substring(0, 4)!!.toInt()
-                        tv.text = "\n\nAge : " + age + "\n\nBirthPlace : " + response.body()?.place_of_birth +
+                        tv.text = "\n\nName : " + response.body()?.name + "\n\nAge : " + age + "\nBirthPlace : " + response.body()?.place_of_birth +
                                 "\n\nBiography :-\n" + response.body()?.biography
                     }else{
                         tv.text = "No Information Available"
@@ -85,6 +87,22 @@ class CastDetails : AppCompatActivity() {
                     rview.layoutManager = LinearLayoutManager(this@CastDetails,LinearLayoutManager.HORIZONTAL,false)
                     rview.adapter =
                             Moviecastadapter(this@CastDetails, response.body()!!.cast)
+                }
+            }
+        })
+
+        service.tvcast(pos).enqueue(object : Callback<Tvcastarray> {
+            override fun onFailure(call: Call<Tvcastarray>, t: Throwable) {
+                tv.text="Loading failed!"
+            }
+            override fun onResponse(
+                call: Call<Tvcastarray>,
+                response: Response<Tvcastarray>
+            ) {
+                runOnUiThread {
+                    rview1.layoutManager = LinearLayoutManager(this@CastDetails,LinearLayoutManager.HORIZONTAL,false)
+                    rview1.adapter =
+                            TvCastAdapter(this@CastDetails, response.body()!!.cast)
                 }
             }
         })

@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.imdbclone.Activities.Details
-import com.example.imdbclone.R
+import com.example.imdbclone.Activities.DetailsTv
 import com.example.imdbclone.Others.Searchdetails
+import com.example.imdbclone.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.searchlayout.view.*
 
-class SearchAdapter(val context: Context, private val arrayList: ArrayList<Searchdetails>)
-    : RecyclerView.Adapter<SearchAdapter.GithubViewHolder>() {
+class SearchAdapterTv(val context: Context, private val arrayList: ArrayList<Searchdetails>)
+    : RecyclerView.Adapter<SearchAdapterTv.GithubViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubViewHolder {
         val inflater = LayoutInflater.from(context)
         return GithubViewHolder(inflater.inflate(R.layout.searchlayout, parent, false))
@@ -30,7 +30,7 @@ class SearchAdapter(val context: Context, private val arrayList: ArrayList<Searc
         var currentuser: Searchdetails? =null
         init{
             itemView.setOnClickListener {
-                val l=Intent(context, Details::class.java)
+                val l= Intent(context, DetailsTv::class.java)
                 l.putExtra("ID",currentuser!!.id)
                 context.startActivity(l)
             }
@@ -39,8 +39,8 @@ class SearchAdapter(val context: Context, private val arrayList: ArrayList<Searc
         fun bind(user: Searchdetails, position: Int) {
             this.currentuser = user
             with(itemView) {
-                titletv.text = user.title
-                releasetv.text = "Release Date: "+user.release_date
+                titletv.text = user.name
+                releasetv.text = "First Air Date: "+user.first_air_date
                 overviewtv.text="\n"+user.overview
                 Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.poster_path).into(img)
 

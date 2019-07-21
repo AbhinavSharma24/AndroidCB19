@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:background="#E6E2E2"
         android:layout_height="match_parent"
-        tools:context=".Activities.Main2Activity"
+        tools:context=".Activities.TVShowsActivity"
         android:orientation="vertical">
 
     <ProgressBar
@@ -25,41 +25,13 @@
                       android:layout_height="wrap_content"
                       android:orientation="vertical">
 
-            <!--<RelativeLayout android:layout_width="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:layout_height="wrap_content">
-
-                <TextView android:id="@+id/dummyEditTextFocus"
-                          android:layout_width="0px"
-                          android:layout_height="0px" />
-
-                <EditText android:layout_width="340dp"
-                          android:layout_height="wrap_content"
-                          android:id="@+id/et"
-                          android:hint="Search Movies"/>
-
-                <Button android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="#1a1a1a"
-                        android:textColor="#C9C2C2"
-                        android:id="@+id/searchbutton"
-                        android:text="Search"
-                        android:layout_toRightOf="@+id/et"/>
-
-            </RelativeLayout>-->
-
-            <FrameLayout
-                    android:id="@+id/container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:id="@+id/tv"/>
 
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:text="Now Showing"
+                      android:text="Airing Today"
                       android:textColor="#1a1a1a"
                       android:textStyle="bold"
                       android:gravity="center"
@@ -74,7 +46,7 @@
 
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:text="Popular"
+                      android:text="On The Air"
                       android:layout_marginBottom="10dp"
                       android:layout_marginTop="20dp"
                       android:gravity="center"
@@ -90,7 +62,7 @@
 
             <TextView android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:text="Upcoming"
+                      android:text="Popular"
                       android:textColor="#1a1a1a"
                       android:textStyle="bold"
                       android:layout_marginBottom="10dp"

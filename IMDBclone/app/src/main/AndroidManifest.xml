@@ -13,6 +13,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activities.SearchTv">
+        </activity>
+        <activity android:name=".Activities.DetailsTv">
+        </activity>
+        <activity android:name=".Activities.TVShowsActivity">
+        </activity>
+        <activity android:name=".Activities.FavouriteActivity">
+        </activity>
         <activity android:name=".Activities.AboutActivity">
         </activity>
         <activity android:name=".Others.SignUpActivity">

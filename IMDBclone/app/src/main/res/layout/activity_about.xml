@@ -16,15 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"/>
 
-    <!--<ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="280dp"
-            android:layout_marginBottom="300dp"
-            android:minWidth="50dp"/>-->
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -50,7 +41,7 @@
 
     </LinearLayout>
 
-    <TextView
+    <!--<TextView
             android:textColor="#1a1a1a"
             android:textSize="24dp"
             android:textStyle="bold"
@@ -59,29 +50,30 @@
             android:layout_marginTop="30dp"
             android:text="Powered By :- The Movie Database"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"/>-->
 
     <TextView
             android:textColor="#1a1a1a"
             android:textSize="24dp"
             android:textStyle="bold"
             android:layout_marginLeft="8dp"
+            android:gravity="center"
             android:layout_marginRight="8dp"
             android:text="Developed By :- ABHINAV SHARMA"
             android:layout_width="match_parent"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="40dp"
             android:layout_height="wrap_content"/>
 
     <TextView
             android:textColor="#1a1a1a"
-            android:textSize="20dp"
+            android:textSize="19sp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
             android:textAlignment="gravity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="IMDb Clone is an database of information related to films, television programs, home videos and video games, and streaming content online -- including cast, production crew and personal biographies, plot summaries, trivia,fan reviews and ratings."/>
+            android:text="IMDb Clone is an application that has movie and TV database. This is a database of information related to films, television programs and video games -- including cast, production crew and personal biographies, plot summaries, and ratings."/>
 
     <TextView
             android:textColor="#1a1a1a"
@@ -93,5 +85,12 @@
             android:layout_width="match_parent"
             android:layout_marginTop="30dp"
             android:layout_height="wrap_content"/>
+
+    <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/credits"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"/>
 
 </LinearLayout>

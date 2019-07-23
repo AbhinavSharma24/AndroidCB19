@@ -11,19 +11,14 @@ import com.example.imdbclone.Activities.Details
 import com.example.imdbclone.R
 import com.example.imdbclone.Others.TmdbResponse
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_github.view.*
-import java.text.DateFormat
+import kotlinx.android.synthetic.main.backdroplayout.view.*
 import java.util.*
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-
 
 class TmdbAdapter( val context: Context, private val arrayList: ArrayList<TmdbResponse>)
     : RecyclerView.Adapter<TmdbAdapter.GithubViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubViewHolder {
         val inflater = LayoutInflater.from(context)
-        return GithubViewHolder(inflater.inflate(R.layout.item_github, parent, false))
+        return GithubViewHolder(inflater.inflate(R.layout.backdroplayout, parent, false))
 
     }
 
@@ -51,15 +46,18 @@ class TmdbAdapter( val context: Context, private val arrayList: ArrayList<TmdbRe
             this.currentuser = user
             this.currentposition = position
             with(itemView) {
+                titletv.text = user.title
+                ratingtv.text = "⭐ " + user.vote_average.toString() + "/10"
+                Picasso.get().load("https://image.tmdb.org/t/p/original" + user.backdrop_path).fit().centerCrop().into(img)
 
-                //val date = Calendar.getInstance().time
-   //             val sdf = SimpleDateFormat("yyyy-MM-dd")
-//                val date = sdf.format(Date())
-                //if(date < user.release_date){
-                    titletv.text = user.title
-                    ratingtv.text = "⭐ " + user.vote_average.toString() + "/10"
-                    Picasso.get().load("https://image.tmdb.org/t/p/original" + user.backdrop_path).into(img)
-                //}
+                ib1blank.setOnClickListener {
+                    ib1filled.visibility = View.VISIBLE
+                    ib1blank.visibility = View.GONE
+                }
+                ib1filled.setOnClickListener {
+                    ib1filled.visibility = View.GONE
+                    ib1blank.visibility = View.VISIBLE
+                }
             }
         }
 

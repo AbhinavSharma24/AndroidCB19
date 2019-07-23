@@ -24,6 +24,7 @@ import com.example.imdbclone.Others.Tmdb2
 import kotlinx.android.synthetic.main.activity_launcher.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.backdroplayout.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -68,6 +69,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 }
             }
         })
+
         service.popularMovies().enqueue(object : Callback<Tmdb2> {
             override fun onFailure(call: Call<Tmdb2>, t: Throwable) {
                 tv.text="Loading failed!"

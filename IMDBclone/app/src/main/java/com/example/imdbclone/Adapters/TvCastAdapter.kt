@@ -10,13 +10,13 @@ import com.example.imdbclone.Activities.DetailsTv
 import com.example.imdbclone.Others.Tvcast
 import com.example.imdbclone.R
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.differentlayout.view.*
+import kotlinx.android.synthetic.main.posterlayout.view.*
 
 class TvCastAdapter(val context: Context, private val arrayList: ArrayList<Tvcast>)
     : RecyclerView.Adapter<TvCastAdapter.GithubViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubViewHolder {
         val inflater = LayoutInflater.from(context)
-        return GithubViewHolder(inflater.inflate(R.layout.differentlayout, parent, false))
+        return GithubViewHolder(inflater.inflate(R.layout.posterlayout, parent, false))
     }
 
     override fun getItemCount(): Int = arrayList.size
@@ -43,7 +43,16 @@ class TvCastAdapter(val context: Context, private val arrayList: ArrayList<Tvcas
             with(itemView) {
                 titletv.text = user.name
                 ratingtv.text = "As " + user.character
-                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.poster_path).into(img2)
+                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.poster_path).fit().centerCrop().into(img2)
+
+                ib3blank.setOnClickListener {
+                    ib3filled.visibility = View.VISIBLE
+                    ib3blank.visibility = View.GONE
+                }
+                ib3filled.setOnClickListener {
+                    ib3filled.visibility = View.GONE
+                    ib3blank.visibility = View.VISIBLE
+                }
             }
 
         }

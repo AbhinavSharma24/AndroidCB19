@@ -44,7 +44,7 @@ class Details : AppCompatActivity() {
             @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call<Overview>, response: Response<Overview>) {
                 runOnUiThread {
-                    Picasso.get().load("https://image.tmdb.org/t/p/original" + response.body()?.backdrop_path).into(toolbarimage)
+                    Picasso.get().load("https://image.tmdb.org/t/p/original" + response.body()?.backdrop_path).fit().centerCrop().into(toolbarimage)
                     progressBar.visibility = View.GONE
                 }
             }

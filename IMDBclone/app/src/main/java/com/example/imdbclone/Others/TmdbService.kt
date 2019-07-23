@@ -13,7 +13,7 @@ interface GithubService {
     @GET("popular?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&page=1")
     fun popularMovies(): Call<Tmdb2>
 
-    @GET("upcoming?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&page=1")
+    @GET("upcoming?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&region=US&page=1")
     fun upcoming(): Call<Tmdb2>
 
     @GET("top_rated?api_key=20ddfcf94f3bf96b48118c43a689756c&language=en-US&page=1")

@@ -7,19 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.imdbclone.Activities.Details
 import com.example.imdbclone.Activities.DetailsTv
-import com.example.imdbclone.Others.TmdbResponse
 import com.example.imdbclone.Others.TmdbTvResponse
 import com.example.imdbclone.R
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.differentlayout.view.*
+import kotlinx.android.synthetic.main.posterlayout.view.*
 
 class TmdbAdaptorTv2(val context: Context, private val arrayList: ArrayList<TmdbTvResponse>)
     : RecyclerView.Adapter<TmdbAdaptorTv2.GithubViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubViewHolder {
         val inflater = LayoutInflater.from(context)
-        return GithubViewHolder(inflater.inflate(R.layout.differentlayout, parent, false))
+        return GithubViewHolder(inflater.inflate(R.layout.posterlayout, parent, false))
     }
 
     override fun getItemCount(): Int = arrayList.size
@@ -47,7 +45,16 @@ class TmdbAdaptorTv2(val context: Context, private val arrayList: ArrayList<Tmdb
             with(itemView) {
                 titletv.text = user.name
                 ratingtv.text = "⭐ " + user.vote_average.toString() + "/10"
-                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.poster_path).into(img2)
+                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.poster_path).fit().centerCrop().into(img2)
+
+                ib3blank.setOnClickListener {
+                    ib3filled.visibility = View.VISIBLE
+                    ib3blank.visibility = View.GONE
+                }
+                ib3filled.setOnClickListener {
+                    ib3filled.visibility = View.GONE
+                    ib3blank.visibility = View.VISIBLE
+                }
             }
         }
     }

@@ -32,7 +32,7 @@ class GithubViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         with(itemView) {
             tv.text=user.name
-            Picasso.get().load("https://img.youtube.com/vi/"+user.key+"/0.jpg").into(bt)
+            Picasso.get().load("https://img.youtube.com/vi/"+user.key+"/0.jpg").fit().centerCrop().into(bt)
             bt.setOnClickListener {
                 val j= Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v="+user.key))
                 context.startActivity(j)

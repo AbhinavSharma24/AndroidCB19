@@ -10,13 +10,13 @@ import com.example.imdbclone.Activities.CastDetails
 import com.example.imdbclone.Others.MovieDetails
 import com.example.imdbclone.R
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_github2.view.*
+import kotlinx.android.synthetic.main.profilelayout.view.*
 
 class TvAdaptor(val context: Context, private val arrayList: ArrayList<MovieDetails>)
     : RecyclerView.Adapter<TvAdaptor.GithubViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubViewHolder {
         val inflater = LayoutInflater.from(context)
-        return GithubViewHolder(inflater.inflate(R.layout.item_github2, parent, false))
+        return GithubViewHolder(inflater.inflate(R.layout.profilelayout, parent, false))
     }
 
     override fun getItemCount(): Int = arrayList.size
@@ -41,7 +41,7 @@ class TvAdaptor(val context: Context, private val arrayList: ArrayList<MovieDeta
             with(itemView) {
                 charactertv.text = user.character
                 nametv.text = user.name
-                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.profile_path).into(img)
+                Picasso.get().load("https://image.tmdb.org/t/p/w500" + user.profile_path).fit().centerCrop().into(img)
                 if (user.profile_path == null) {
                     Picasso.get().load(
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaYY" +

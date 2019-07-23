@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "35919999417",
+    "firebase_url": "https://nois-bf745.firebaseio.com",
+    "project_id": "nois-bf745",
+    "storage_bucket": "nois-bf745.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35919999417:android:86587b8a670e01f8",
+        "android_client_info": {
+          "package_name": "com.example.firstfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35919999417-6n8p6liiuqsoqa0g4s0v8v7tatdl78q6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firstfirebase",
+            "certificate_hash": "7c1cbac71291df22d3abf698e98f9946f03bdd75"
+          }
+        },
+        {
+          "client_id": "35919999417-v9e5o6ve4loqv79s2rnsaeud9h7v71of.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4lIil78CGJBPyTO5vLJ45lnA-uhlS8Nk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35919999417-v9e5o6ve4loqv79s2rnsaeud9h7v71of.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

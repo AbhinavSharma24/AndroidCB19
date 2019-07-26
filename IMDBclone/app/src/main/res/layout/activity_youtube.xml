@@ -3,16 +3,15 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".Activities.Search"
-        android:background="#E6E2E2"
-        android:orientation="vertical">
+        tools:context="com.example.imdbclone.Activities.Youtube">
 
     <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar22"
-            android:background="#1a1a1a"
+            android:id="@+id/toolbar33"
             app:titleTextColor="#E6E2E2"
+            android:background="#1a1a1a"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"/>
 
@@ -26,23 +25,24 @@
             android:layout_marginBottom="300dp"
             android:minWidth="50dp"/>
 
-    <ImageView
-            android:layout_width="350dp"
-            android:id="@+id/nothing"
-            android:layout_gravity="center"
-            android:visibility="gone"
-            android:src="@drawable/notfound"
-            android:layout_height="wrap_content"/>
-
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv"/>
-
-    <androidx.recyclerview.widget.RecyclerView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/rview"/>
+            android:layout_centerHorizontal="true"
+            android:id="@+id/video_play_text"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="22dp"
+            android:layout_marginBottom="20dp"
+            android:text="Playing Youtube video in IMDb Clone app" />
+
+
+    <fragment
+            android:layout_below="@+id/video_play_text"
+            android:id="@+id/youtube_player_fragment"
+            android:layout_gravity="center"
+            android:name="com.google.android.youtube.player.YouTubePlayerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 </LinearLayout>

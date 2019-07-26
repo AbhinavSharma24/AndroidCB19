@@ -24,6 +24,7 @@ class Details : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
+
         setSupportActionBar(toolbar33)
         supportActionBar?.title = "Movie Details"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -46,6 +47,9 @@ class Details : AppCompatActivity() {
                 runOnUiThread {
                     Picasso.get().load("https://image.tmdb.org/t/p/original" + response.body()?.backdrop_path).fit().centerCrop().into(toolbarimage)
                     progressBar.visibility = View.GONE
+                    if(response.body()?.backdrop_path == null){
+                        Picasso.get().load("https://fasterthemes.com/demo/foodrecipespro-wordpress-theme/wp-content/themes/foodrecipespro/images/no-image.jpg").fit().centerCrop().into(toolbarimage)
+                    }
                 }
             }
         })
@@ -84,8 +88,7 @@ class Details : AppCompatActivity() {
             ) {
                 runOnUiThread {
                     rview3.layoutManager = LinearLayoutManager(this@Details, LinearLayoutManager.HORIZONTAL,false)
-                    rview3.adapter =
-                            MovieAdapter2(this@Details, response.body()!!.results)
+                    rview3.adapter = MovieAdapter2(this@Details, response.body()!!.results)
                 }
             }
         })

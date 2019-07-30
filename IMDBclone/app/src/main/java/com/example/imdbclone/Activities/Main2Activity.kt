@@ -119,7 +119,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 }
             }
         })
-        /*searchbutton.setOnClickListener {
+        /*searchButton.setOnClickListener {
             val a = Intent(this,Search::class.java)
             a.putExtra("Search Text",et.text.toString())
             if(et.text.toString() != "") {
@@ -129,18 +129,18 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             }
         }*/
 
-        /*viewAll1.setOnClickListener {
-            startActivity(Intent(this@Main2Activity,ViewAll::class.java))
-        }*/
-        viewAll2.setOnClickListener {
-            startActivity(Intent(this@Main2Activity,ViewAll::class.java))
+        viewAll1.setOnClickListener {
+            startActivity(Intent(this@Main2Activity,ViewAll::class.java).putExtra("category","nowshowing"))
         }
-        /*viewAll3.setOnClickListener {
-            startActivity(Intent(this@Main2Activity,ViewAll::class.java))
+        viewAll2.setOnClickListener {
+            startActivity(Intent(this@Main2Activity,ViewAll::class.java).putExtra("category","popular"))
+        }
+        viewAll3.setOnClickListener {
+            startActivity(Intent(this@Main2Activity,ViewAll::class.java).putExtra("category","upcoming"))
         }
         viewAll4.setOnClickListener {
-            startActivity(Intent(this@Main2Activity,ViewAll::class.java))
-        }*/
+            startActivity(Intent(this@Main2Activity,ViewAll::class.java).putExtra("category","toprated"))
+        }
 
 
         val toggle = ActionBarDrawerToggle(

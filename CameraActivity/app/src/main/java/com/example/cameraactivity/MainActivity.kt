@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                     textureView.surfaceTexture = it.surfaceTexture
                 }
                 lens = 1
-                CameraX.bindToLifecycle(this, preview, imageCapture)
+                //CameraX.bindToLifecycle(this, preview, imageCapture)
             }
             else if(lens == 1){
                 val previewConfig = PreviewConfig.Builder().apply {
@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                     textureView.surfaceTexture = it.surfaceTexture
                 }
                 lens = 0
-                CameraX.bindToLifecycle(this,preview,imageCapture)
+                //CameraX.bindToLifecycle(this,preview,imageCapture)
             }
         }
 

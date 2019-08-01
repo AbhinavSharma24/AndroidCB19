@@ -1,9 +1,7 @@
 package com.example.cameraactivity
 
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Matrix
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Rational
 import android.util.Size
@@ -11,6 +9,7 @@ import android.view.Surface
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -71,6 +70,45 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
+        val lens = 0
+        reverseCamera.setOnClickListener {
+            if(lens == 0) {
+                val previewConfig = PreviewConfig.Builder().apply {
+                    setTargetResolution(Size(1080, 1080))
+                    setTargetAspectRatio(Rational(1, 1))
+                    setLensFacing(CameraX.LensFacing.FRONT)     //to open front camera by force
+                }.build()
+
+                val preview = Preview(previewConfig)
+
+                preview.setOnPreviewOutputUpdateListener {
+                    val parent = textureView.parent as ViewGroup
+                    parent.removeView(textureView)
+                    parent.addView(textureView, 0)
+                    updateView()
+                    textureView.surfaceTexture = it.surfaceTexture
+                }
+                CameraX.bindToLifecycle(this, preview, imageCapture)
+            }
+            else if(lens == 1){
+                val previewConfig = PreviewConfig.Builder().apply {
+                    setTargetResolution(Size(1080, 1080))
+                    setTargetAspectRatio(Rational(1, 1))
+                    /*setLensFacing(CameraX.LensFacing.FRONT)     //to open front camera by force*/
+                }.build()
+
+                val preview = Preview(previewConfig)
+
+                preview.setOnPreviewOutputUpdateListener {
+                    val parent = textureView.parent as ViewGroup
+                    parent.removeView(textureView)
+                    parent.addView(textureView,0)
+                    updateView()
+                    textureView.surfaceTexture = it.surfaceTexture
+                }
+                CameraX.bindToLifecycle(this,preview,imageCapture)
+            }
+        }
 
         //to get the preview
         val previewConfig = PreviewConfig.Builder().apply {

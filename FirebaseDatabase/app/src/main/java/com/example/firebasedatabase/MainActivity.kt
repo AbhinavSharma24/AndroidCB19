@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     //if values are changed of a child
                 }
                 override fun onChildAdded(snapshot: DataSnapshot, p1: String?) {
-                    tv.text = "${tv.text}    ${snapshot.getValue(Todo::class.java)?.text}"
+                    tv.text = "${tv.text}  ${snapshot.getValue(Todo::class.java)?.text}"
                     //to get value of child key
                     //snapshot.key
                 }

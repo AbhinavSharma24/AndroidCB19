@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        reverseCamera.visibility = View.GONE
         captureBtn.visibility = View.GONE
         requests()
     }
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                     startCamera()
                     captureBtn.visibility = View.VISIBLE
                     camera.visibility = View.GONE
+                    reverseCamera.visibility = View.VISIBLE
                 }
             }
         }
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
-        val lens = 0
+        var lens = 0
         reverseCamera.setOnClickListener {
             if(lens == 0) {
                 val previewConfig = PreviewConfig.Builder().apply {
@@ -88,7 +90,8 @@ class MainActivity : AppCompatActivity() {
                     updateView()
                     textureView.surfaceTexture = it.surfaceTexture
                 }
-                CameraX.bindToLifecycle(this, preview, imageCapture)
+                lens = 1
+                //CameraX.bindToLifecycle(this, preview, imageCapture)
             }
             else if(lens == 1){
                 val previewConfig = PreviewConfig.Builder().apply {
@@ -106,7 +109,8 @@ class MainActivity : AppCompatActivity() {
                     updateView()
                     textureView.surfaceTexture = it.surfaceTexture
                 }
-                CameraX.bindToLifecycle(this,preview,imageCapture)
+                lens = 0
+                //CameraX.bindToLifecycle(this,preview,imageCapture)
             }
         }
 

@@ -2,6 +2,8 @@ package com.example.firebasedatabase
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -11,15 +13,29 @@ class MainActivity : AppCompatActivity() {
         FirebaseDatabase.getInstance().reference
     }
 
+    val auth by lazy {
+        FirebaseAuth.getInstance()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val ref = db.child("message/user1")
+        var uid =""
+        auth.addAuthStateListener {
+            if(it.currentUser == null){
+                auth.signInWithEmailAndPassword("abc@gmail.com","123456")
+            }
+            else{
+                uid = it.uid ?: ""
+                Toast.makeText(this,"${it.uid}",Toast.LENGTH_LONG).show()
+            }
+        }
+
+        val ref = db.child("message/user/$uid")
 
         db.child("message")
             .child("user1")
-            .child("chat1")
             //.child("text")
 
     //second implement this
@@ -68,3 +84,21 @@ class Todo{
     var text: String = ""
     var time: String = ""
 }
+
+
+
+
+
+
+
+
+/*
+{
+    */
+/* Visit https://firebase.google.com/docs/database/security to learn more about security rules. *//*
+
+    "rules": {
+    ".read": "auth.uid !== null",
+    ".write": "auth.uid !== null"
+}
+}*/

@@ -44,9 +44,11 @@
             android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_menu_revert"
             android:id="@+id/reverseCamera"
             android:background="#1a1a1a"
-            tools:layout_editor_absoluteY="645dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toStartOf="@+id/captureBtn"
             android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.495"
-            tools:ignore="MissingConstraints"/>
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toTopOf="@+id/captureBtn"
+            app:layout_constraintBottom_toBottomOf="@+id/captureBtn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

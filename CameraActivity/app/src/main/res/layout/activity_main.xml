@@ -28,7 +28,7 @@
 
     <ImageButton
             android:layout_width="84dp"
-            android:layout_height="77dp"
+            android:layout_height="78dp"
             android:background="#1a1a1a"
             app:srcCompat="@android:drawable/ic_menu_camera"
             android:id="@+id/captureBtn"
